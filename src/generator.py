@@ -1,5 +1,6 @@
+from random import shuffle
+
 from maze import DIRECTIONS, OFFSETS, OPPOSITE, Maze
-from random import Random
 
 
 class MazeGenerator():
@@ -14,7 +15,7 @@ class MazeGenerator():
         cell.visited = True
 
         directions = list(DIRECTIONS)
-        Random.shuffle(directions)
+        shuffle(directions)
 
         for direction in directions:
             dx, dy = OFFSETS[direction]
