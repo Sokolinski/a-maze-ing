@@ -13,7 +13,8 @@ class ConfigError(Exception):
 def parse_coordinate(key: str, value: str) -> tuple[int, int]:
     parts = [part.strip() for part in value.split(",")]
     if len(parts) != 2:
-        raise ConfigError(f"{key} must contain exactly 2 integers separated by a comma")
+        raise ConfigError(
+            f"{key} must contain exactly 2 integers separated by a comma")
 
     try:
         x, y = (int(part) for part in parts)
@@ -80,10 +81,12 @@ def parse_config(path: str) -> dict[str, Any]:
                     raise ConfigError(f"Line {line_number}: empty value")
 
                 if key not in ALLOWED_KEYS:
-                    raise ConfigError(f"Line {line_number}: unknown key " f"'{key}'")
+                    raise ConfigError(
+                        f"Line {line_number}: unknown key " f"'{key}'")
 
                 if key in raw_config:
-                    raise ConfigError(f"Line {line_number}: duplicate key '{key}'")
+                    raise ConfigError(
+                        f"Line {line_number}: duplicate key '{key}'")
 
                 raw_config[key] = value
 
